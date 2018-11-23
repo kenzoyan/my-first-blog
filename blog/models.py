@@ -19,3 +19,7 @@ class Post(models.Model):
         
     def __str__(self):
         return self.title
+    def show(self):
+        print("title: "+self.title)
+        print("text: "+self.text)
+        

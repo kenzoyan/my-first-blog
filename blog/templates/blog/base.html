@@ -5,9 +5,15 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <title>Django Girls blog</title>
-		<style type="text/css" >
-			h1 a {
+        <title>Kenzo Yan blog</title>
+		
+		
+		<meta charset="utf-8">
+	<title>Home</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<style>
+				h1 a {
 			color: #FCA205;
 			font-family:'Lobster';
 				}
@@ -15,9 +21,10 @@
 			padding-left: 15px;
 				}
 			    .page-header {
-        background-color: #ff9400;
+        background-color: #F9D3C6;
         margin-top: 0;
         padding: 20px 20px 20px 40px;
+		text-align: center;
     }
 
     .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -27,7 +34,11 @@
     }
 
     .content {
-        margin-left: 40px;
+        margin-left: 100px;
+		background-color: #EADBB3;
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+		text-align: center;
     }
 
     h1, h2, h3, h4 {
@@ -61,22 +72,185 @@
     .post h1 a, .post h1 a:visited {
         color: #000000;
     }
-		</style>
+	</style>
+    <!-- Mobile Specific Metas
+	================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- CSS
+	==================================================-->
+  	<link rel="stylesheet" href="{% static 'css/zerogrid.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+	
+	<!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+	<script src="{% static 'js/jquery1111.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
     </head>
-    <body>
+    <body onLoad="startTime()">
+		
         <div class="page-header">
 		{% if user.is_authenticated%}
+			<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-envelope"></span></a>
 			<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        {%endif%} 
-			<h1><a href="/">Django Girls Blog</a></h1>
+			<p class='top-menu'>Hello {{user.username}}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+		{%else%}
+			<a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
+		{%endif%} 
+			<h1><a href="/" onclick="show()">Kenzo Yan Blog</a></h1>
         </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-                </div>
-            </div>
-        </div>
+		<!-- Basic Page Needs
+  ================================================== -->
+		<!--////////////////////////////////////Container-->
+<!--在网站的左上角叫上当前的时间日期-->
+         <script language="Javascript" type="text/javascript">
+<!--
+var enabled = 0; today = new Date(); 
+var day; var date;
+if(today.getDay()==0) day = " SUNDAY"
+if(today.getDay()==1) day = " MONDAY"
+if(today.getDay()==2) day = " TUESDAY"
+if(today.getDay()==3) day = " WEDNESDAY"
+if(today.getDay()==4) day = " THRUSDAY"
+if(today.getDay()==5) day = " TGI FRIDAY"
+if(today.getDay()==6) day = " SATURDAT"
+date = (today.getFullYear()) + "-" + (today.getMonth() + 1 ) + "-" + today.getDate() + "" + day +"";
+document.write(date);
+
+function startTime()
+{
+var today=new Date()
+var h=today.getHours()
+var m=today.getMinutes()
+var s=today.getSeconds()
+// add a zero in front of numbers<10
+m=checkTime(m)
+s=checkTime(s)
+document.getElementById('time').innerHTML=h+":"+m+":"+s
+t=setTimeout('startTime()',500)
+}
+//实时显示当前的时间
+function checkTime(i)
+{
+if (i<10) 
+  {i="0" + i}
+  return i
+}
+</script>
+<div id='time'></div>
+		<section id="container">
+			<div class="wrap-container">
+				<section class="content-box box-1">
+					<div class="zerogrid thebanner">
+						<div class="wrap-box"><!--Start Box-->
+							<div class="row">
+								<div class="">
+									<div class="row">
+										
+<script>
+function show()
+  {
+  var name=alert("Having a nice day");
+  }
+  
+function setImgMiddle(img) {  
+        var $img = $(img),  
+            $panel = $(img).parent();//图片容器  
+  
+        var img_width = $img.width(),img_height = $img.height(),//图片宽高  
+            panel_width = $panel.width(), panel_height = $panel.height(); //图片容器宽高  
+  
+        if(panel_width/panel_height  <  img_width/img_height){  
+            $img.width(panel_width);  
+            $img.css('margin-top', (panel_height - $img.height()) * 0.5);  
+        }else{  
+            $img.height(panel_height);  
+            $img.css('margin-left', (panel_width - $img.width()) * 0.5);  
+        }  
+        $img.fadeIn(100);  
+    }  
+    $(function(){  
+        //  这种写法在ie6,7,8都不是很正常，有时会随机丢失load事件  
+        $('img-responsive').load(function(){  
+            setImgMiddle(this);  
+            //console.log($(this).attr('src'));  
+        })  
+    }) 
+
+
+</script>
+										</div>
+									</div>
+								</div>
+                                            
+							</div>
+						</div>
+					</div>
+				</section>
+				
+<script>  
+$(function(){
+$('#img').click(function(){
+
+$(this).toggleClass('min');
+$(this).toggleClass('max');
+});
+});
+
+</script>
+				<!-----------------主页的最大标题以及一些简短的话------------>
+				<section class="content-box boxstyle-1 box-3">
+					<div class="zerogrid">
+						<div class="row wrap-box"><!--Start Box-->
+						  <div class="header t-center">
+							<div class="wrapper">
+							  <h2 class="color-yellow">HELLO！THIS IS KENZO</h2>
+							  <p>I ' am here to post some bolgs and photos of my daily life.</p>
+							</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+				 <!-----------------存放主要内容博客的部分-------------------->
+				<section class="content-box boxstyle-1 box-5">
+					<div class="zerogrid">
+						<div class="row wrap-box"><!--Start Box-->
+									{% block content %}
+									{% endblock %}
+									</div>
+						</div>
+				</section>
+				<!--////////////////////////////////////最后的尾部放置信息的部分-->
+        <hr>
+		<footer>
+			
+						<div><a href="{% url 'post_list' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a></div>
+						
+						
+                        <!---------放置联系方式的部分------------>
+							
+								<ul class="page-header">
+									<li>
+									  <h1>CONTACT ME AS YOU WISH</h1>
+									</li>
+									<br>
+									<li>MAIL:  kenzoyan@foxmail.com</li>
+									<br>
+									<li>TEL: 123456789</li>
+									<br>
+									<li>此网站的唯一用途是进行WEB网页设计的学习与实践<li>
+								</ul>
+							
+		</footer>
+
+		
+		
+		
+</div>
     </body>
 </html>

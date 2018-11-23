@@ -1,17 +1,38 @@
 {%extends 'blog/base.html' %}
 
-    {%block content %}
-        <div class="post">
-            {%if post.published_date %}
-                <div class="date">
-                    {{ post.published_date }}
-                </div>
-            {%endif %}
-			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-    {%endblock%} 
+					{%block content %}
+					
+		<!--////////////////////////////////////Container-->
+		<section id="container">
+			<div class="wrap-container">
+				<div id="main-content">
+					<div class="wrap-content zerogrid">
+						
+						
+						<article>
+							<div class="art-header">
+								<h1 class="entry-title">{{ post.title }}</h1>
+							</div>
+							<br>
+							{%if post.published_date %}
+						<div class="date">
+						{{ post.published_date }}
+						</div>
+						{%else%}
+					<a class="button"  style="font-size: 30px" href="{% url 'post_publish' pk=post.pk %}">Publish<span></span></a>
+					
+						{%endif %}
+					<a class="button" style="font-size: 25px"  href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+							<div class="art-content">
+								<div class="excerpt">
+								<p>{{ post.text|linebreaksbr }}</p>
+								</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+					{%endblock%} 
 
 
 

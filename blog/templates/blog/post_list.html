@@ -1,14 +1,175 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
+        
+		
     
 		 {% block content %}
-                {% for post in posts %}
-                    <div class="post">
-                        <div class="date">
-                            {{ post.published_date }}
-                        </div>
-                        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                        <p>{{ post.text|linebreaksbr }}</p>
-                    </div>
-                {% endfor %}
+		 <!--主页上的两张大图片-->
+								<div id="owl-slide" class="owl-carousel">
+									<div class="item">
+										<img src="{% static 'images/slider-1.jpg' %}" onload="setImgMiddle(this);" />
+									</div>
+									<div class="item">
+										<img src="{% static 'images/slider-2.jpg' %}"  onload="setImgMiddle(this);" />
+									</div>
+								</div>
+		<!-----------------8张并列排布的可点击小图片---------------->
+				<section class="content-box box-2">
+					<div class="zerogrid">
+						<div class="wrap-box"><!--Start Box-->
+							<div class="row">
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_5-370x370.jpg' %}" class="img-responsive" alt="" height='500' width="500">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_6-370x370.jpg' %}" class="img-responsive" alt="" height='500' width="500"><em></em>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_7-370x370.jpg' %}" alt="" height='500' width="500" class="img-responsive">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_8-370x370.jpg' %}" class="img-responsive" alt="" height='500' width="500">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_9-370x370.jpg' %}" class="img-responsive" alt="" height='500' width="500">
+											
+										</div>
+									</div>
+								</div>
+							  <div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_21-370x370.jpg' %}" alt="" height='500' width="500" class="img-responsive">
+											
+									  </div>
+									</div>
+								</div>
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_18-370x370.jpg' %}"  alt="" height='500' width="500" class="img-responsive" >
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-1-4">
+									<div class="wrapper">
+										<div class="portfolio-box">
+											<img src="{% static 'images/img_5-370x370.jpg' %}"  alt="" height='500' width="500" class="img-responsive" >
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+                
+				
+				<!-----------------存放主要内容博客的部分-------------------->
+				<section class="content-box boxstyle-1 box-5">
+					<div class="zerogrid">
+						<div class="row wrap-box"><!--Start Box-->
+                <!---------左边放置内容的博客部分------------>
+<script>
+function myFunction() {
+    var str = document.getElementById("words").innerHTML; 
+    var txt = str.replace(/Posted/i,"AAAAAAAAA");
+    document.getElementById("words").innerHTML = txt;
+}
+</script>
+							<div class="col-2-3">
+								<div class="header">
+									<div class="wrapper">
+										<h2 class="color-yellow">LATEST FROM THE BLOG</h2>
+									</div>
+								</div>
+								<br>
+								<article>
+									<div class="art-header">
+										<a href="#">
+										<h3>标题111111111111</h3></a>
+										<div class="info" id="words">Posted on June 22, 2010 in: <a href="#">Event</a></div>
+									</div>
+									<div class="art-content" >
+									<img src="{%static 'images/10.jpg' %}" />
 
+										<p >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+									</div>
+
+									<a class="button" href="#">Learn More</a>
+                                   <br> 
+                                   <br>
+                                   <button onClick="myFunction()">JS替换字符</button>
+									<div class="line"></div>
+								</article>
+								
+								{% for post in posts %}
+							<article>
+									<div class="art-header">
+										<a href="{% url 'post_detail' pk=post.pk %}">
+										<h3>{{ post.title }}</h3></a>
+										<div class="info">{{ post.published_date }}<a href="#">Event</a></div>
+									</div>
+									<div class="art-content">
+									<img src="{%static 'images/10.jpg' %}" />
+										<p>{{ post.text|linebreaksbr|safe|truncatechars:100 }}</p>
+									</div>
+								<a class="button" href="{% url 'post_detail' pk=post.pk %}">Learn More</a>
+								<div class="line"></div>
+							</article>
+							<br>
+								{% endfor %}
+							</div>
+              <!--------右边边放置自我介绍以及一些小信息的部分------------>
+							<div class="col-1-3">
+								<div class="r-slidebar">
+									<div class="wrap-col">
+										<div class="post">
+										
+											<h5 class="color-red">介绍一下我自己</h5>
+											<img src="{%static 'images/13.jpg' %}" />
+											<a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing eli...</a>
+											<a href="#">Nastsea labore et dolore magames niausy aliquam quaerat voluptatem.</a>
+											<a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing eli...</a>
+											<a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing eli...</a>
+										</div>
+										<div class="post">
+											<h5 class="color-blue">一些句子</h5>
+											<p>Nastsea labore et dolore magames niausy aliquam quaerat voluptatem.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+			</div>
+		</section>	
 		{% endblock %}
+		

@@ -25,8 +25,9 @@ SECRET_KEY = 'hnb-6lf&kw-j4+(dua^@@vi5zi1#4r6ozi&_656y6(d#d#icld'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.kenzoyan.pythonanwhere.com','127.0.0.1']
 
+LOGIN_REDIRECT_URL='/'
 
 # Application definition
 
